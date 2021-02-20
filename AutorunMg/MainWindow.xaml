@@ -1,0 +1,44 @@
+﻿<Window x:Class="AutorunMg.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutorunMg"
+        mc:Ignorable="d"
+        Title="MainWindow" Loaded="Window_Loaded" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="btnSerch" Content="Поиск" Margin="10, 10"  HorizontalAlignment="Left"  Height="20" Width="75"/>
+            <Label x:Name="label"  Content="" VerticalAlignment="Center"/>
+        </StackPanel>
+        <ListView x:Name="lvResult" Grid.Row="0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Состояние">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsEnabled="{Binding Path=CheckBoxEnabled}"  IsChecked="{Binding Path=Enabled}" ></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Иконка">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Path=Icon}"></Image>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Имя</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=FilePath}">Путь к файлу</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=FileName}">Файл</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Params}">Парметры</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Path}">Путь</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
